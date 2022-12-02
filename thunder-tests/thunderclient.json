@@ -1,0 +1,16 @@
+[
+  {
+    "_id": "6cdb9dfb-9691-4934-9ccc-c9bafbb09982",
+    "colId": "665fc8d2-c07e-4649-8bec-f33fe436fb82",
+    "containerId": "",
+    "name": "connections",
+    "url": "http://localhost/connect.php",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2022-12-01T10:52:46.723Z",
+    "modified": "2022-12-01T10:53:54.683Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  }
+]
