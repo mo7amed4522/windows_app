@@ -104,7 +104,7 @@ function updateData($table, $data, $where, $json = true)
 function deleteData($table, $where, $json = true)
 {
     global $con;
-    $stmt = $con->prepare("DELETE FROM $table WHERE $where");
+    $stmt = $con->prepare("DELETE FROM $table WHERE `ID` =$where");
     $stmt->execute();
     $count = $stmt->rowCount();
     if ($json == true) {
@@ -123,7 +123,7 @@ function imageUpload($imageRequest)
     $imagename  = rand(1000, 10000) . $_FILES[$imageRequest]['name'];
     $imagetmp   = $_FILES[$imageRequest]['tmp_name'];
     $imagesize  = $_FILES[$imageRequest]['size'];
-    $allowExt   = array("jpg", "png", "gif", "mp3", "pdf");
+    $allowExt   = array("jpg", "png", "gif", "mp3", "pdf","docs",".");
     $strToArray = explode(".", $imagename);
     $ext        = end($strToArray);
     $ext        = strtolower($ext);
