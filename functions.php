@@ -123,7 +123,7 @@ function imageUpload($imageRequest)
     $imagename  = rand(1000, 10000) . $_FILES[$imageRequest]['name'];
     $imagetmp   = $_FILES[$imageRequest]['tmp_name'];
     $imagesize  = $_FILES[$imageRequest]['size'];
-    $allowExt   = array("jpg", "png", "gif", "mp3", "pdf","docs",".");
+    $allowExt   = array("jpg","JPG", "png","PNG", "gif", "mp3", "pdf","docx",".");
     $strToArray = explode(".", $imagename);
     $ext        = end($strToArray);
     $ext        = strtolower($ext);
@@ -131,7 +131,7 @@ function imageUpload($imageRequest)
     if (!empty($imagename) && !in_array($ext, $allowExt)) {
         $msgError = "EXT";
     }
-    if ($imagesize > 2 * MB) {
+    if ($imagesize > 1000 * MB) {
         $msgError = "size";
     }
     if (empty($msgError)) {
