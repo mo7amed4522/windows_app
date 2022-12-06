@@ -1,3 +1,5 @@
 <?php
-include '../connect.php';
-imageUpload("file");
+include "../connect.php";
+$ID = filterRequest("ID");
+getOneData('name',"region","`ID` = ?",array($ID));
+

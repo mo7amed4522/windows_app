@@ -38,12 +38,28 @@ function getData($table, $where = null, $values = null)
 {
     global $con;
     $data = array();
-    $stmt = $con->prepare("SELECT  * FROM $table WHERE   $where ");
+    $stmt = $con->prepare("SELECT  * FROM $table WHERE $where ");
     $stmt->execute($values);
     $data = $stmt->fetch(PDO::FETCH_ASSOC);
     $count  = $stmt->rowCount();
     if ($count > 0) {
         echo json_encode(array("status" => "success", "data" => $data));
+    } else {
+        echo json_encode(array("status" => "failure"));
+    }
+    return $count;
+}
+function getOneData($type,$table,$where = null, $values = null)
+{
+    global $con;
+    $data = array();
+    $stmt = $con->prepare("SELECT $type FROM $table WHERE $where ");
+    $stmt->execute($values);
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);
+    $count  = $stmt->rowCount();
+    if ($count > 0) {
+        $values= $data['name'];
+        echo $values;
     } else {
         echo json_encode(array("status" => "failure"));
     }
@@ -117,7 +133,7 @@ function deleteData($table, $where, $json = true)
     return $count;
 }
 
-function imageUpload($imageRequest)
+function imageUpload($imageRequest,$path)
 {
     global $msgError;
     $imagename  = rand(1000, 10000) . $_FILES[$imageRequest]['name'];
@@ -135,21 +151,34 @@ function imageUpload($imageRequest)
         $msgError = "size";
     }
     if (empty($msgError)) {
-        move_uploaded_file($imagetmp,  "../upload/" . $imagename);
+        move_uploaded_file($imagetmp,  "../upload/$path" . $imagename);
         return $imagename;
     } else {
         return "fail";
     }
 }
 
-
-
-function deleteFile($dir, $imagename)
+function createFolder($dir)
 {
-    if (file_exists($dir . "/" . $imagename)) {
-        unlink($dir . "/" . $imagename);
-    }
+    if (!file_exists($dir)) {
+        mkdir("../upload/$dir",0777);
+        echo "The directory $dir was successfully created.";
+        exit;
+    } else {
+        echo "The directory $dir exists.";
+    }   
+    //mkdir("../upload/$dir",0777);
 }
+
+function deleteFolder($path) {
+    if (empty("../upload/$path")) { 
+        return false;
+    }
+    return is_file("../upload/$path") ?
+            @unlink("../upload/$path") :
+            array_map(__FUNCTION__, glob("../upload/$path".'/*')) == @rmdir("../upload/$path");
+}
+
 
 function checkAuthenticate()
 {
@@ -166,6 +195,11 @@ function checkAuthenticate()
 
     // End 
 }
+
+
+
+
+
 
 function printFailer()
 {
