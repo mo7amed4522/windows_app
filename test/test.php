@@ -1,5 +1,5 @@
+
 <?php
 include "../connect.php";
-$ID = filterRequest("ID");
-getOneData('name',"region","`ID` = ?",array($ID));
-
+ $ne = getOneData('name','place',"`ID_Region` = 1");
+ echo $ne;

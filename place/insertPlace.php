@@ -13,4 +13,7 @@ if($count > 0){
         "ID_Region"=>$ID_Region,
     );
     insertData("place" , $data);
+    $region = getOneData('name','region',"`ID` = $ID_Region");
+    $path = "$region/$name";
+    createFolder($path);
 }

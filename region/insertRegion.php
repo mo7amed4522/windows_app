@@ -1,7 +1,6 @@
 <?php
 include '../connect.php';
 $name = filterRequest("name");
-
 $stmt = $con->prepare("SELECT * FROM `region` WHERE `name` = ?");
 $stmt->execute(array($name));
 $count = $stmt->rowCount();
