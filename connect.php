@@ -1,12 +1,11 @@
 <?php
-$dsn = "mysql:host=127.0.0.1;dbname=windows";
+$dsn = "mysql:host=127.0.0.1;dbname=windows_app";
 $username = "root";
 $password = '';
 $option = array(
   PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES UTF8" // For Arabic
 );
 $countrowinpage = 9;
-
 try {
   $con = new PDO($dsn ,$username, $password, $option);
   // set the PDO error mode to exception

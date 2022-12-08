@@ -135,7 +135,7 @@ function imageUpload($imageRequest,$path)
         $msgError = "size";
     }
     if (empty($msgError)) {
-        move_uploaded_file($imagetmp,  "../upload/$path" . $imagename);
+        move_uploaded_file($imagetmp,  ".../upload/$path" . $imagename);
         return $imagename;
     } else {
         return "fail";
@@ -161,7 +161,7 @@ function getOneData($type,$table,$where = null, $values = null)
 function createFolderregion($dir)
 {
     if (!file_exists($dir)) {
-        mkdir("./upload/$dir",0777);
+        mkdir("../upload/$dir",0777);
         exit;
     } else {
         echo "The directory $dir exists.";
@@ -170,7 +170,7 @@ function createFolderregion($dir)
 function createFolderPlace($dir,$path)
 {
     if (!file_exists($dir)) {
-        mkdir("./upload/$dir/$path",0777);
+        mkdir("../upload/$dir/$path",0777);
         exit;
     } else {
         echo "The directory $dir exists.";
@@ -179,7 +179,7 @@ function createFolderPlace($dir,$path)
 function createFolderOccupancy($dir,$path,$path2)
 {
     if (!file_exists($dir)) {
-        mkdir("./upload/$dir/$path/$path2",0777);
+        mkdir("../upload/$dir/$path/$path2",0777);
         exit;
     } else {
         echo "The directory $dir exists.";
@@ -188,43 +188,43 @@ function createFolderOccupancy($dir,$path,$path2)
 function createFolderFilesData($dir,$path,$path2,$path3)
 {
     if (!file_exists($dir)) {
-        mkdir("./upload/$dir/$path/$path2/$path3",0777);
+        mkdir("../upload/$dir/$path/$path2/$path3",0777);
         exit;
     } else {
         echo "The directory $dir exists.";
     }
 }
 function deleteFolderRegion($path) {
-    if (empty("./upload/$path")) {
+    if (empty("../upload/$path")) {
         return false;
     }
-    return is_file("./upload/$path") ?
-            @unlink("./upload/$path") :
-            array_map(__FUNCTION__, glob("./upload/$path".'/*')) == @rmdir("./upload/$path");
+    return is_file("../upload/$path") ?
+            @unlink("../upload/$path") :
+            array_map(__FUNCTION__, glob("../upload/$path".'/*')) == @rmdir("../upload/$path");
 }
 function deleteFolderPlace($path,$path2) {
-    if (empty("./upload/$path/$path2")) {
+    if (empty("../upload/$path/$path2")) {
         return false;
     }
-    return is_file("./upload/$path/$path2") ?
-            @unlink("./upload/$path/$path2") :
-            array_map(__FUNCTION__, glob("./upload/$path/$path2".'/*')) == @rmdir("./upload/$path/$path2");
+    return is_file("../upload/$path/$path2") ?
+            @unlink("../upload/$path/$path2") :
+            array_map(__FUNCTION__, glob("../upload/$path/$path2".'/*')) == @rmdir("../upload/$path/$path2");
 }
 function deleteFolderOccupancy($path,$path2,$path3) {
-    if (empty("./upload/$path/$path2/$path3")) {
+    if (empty("../upload/$path/$path2/$path3")) {
         return false;
     }
-    return is_file("./upload/$path/$path2/$path3") ?
-            @unlink("./upload/$path/$path2/$path3") :
-            array_map(__FUNCTION__, glob("./upload/$path/$path2/$path3".'/*')) == @rmdir("./upload/$path/$path2/$path3");
+    return is_file("../upload/$path/$path2/$path3") ?
+            @unlink("../upload/$path/$path2/$path3") :
+            array_map(__FUNCTION__, glob("../upload/$path/$path2/$path3".'/*')) == @rmdir("../upload/$path/$path2/$path3");
 }
 function deleteFolderFilesData($path,$path2,$path3,$path4) {
-    if (empty("./upload/$path/$path2/$path3/$path4")) {
+    if (empty("../upload/$path/$path2/$path3/$path4")) {
         return false;
     }
-    return is_file("./upload/$path/$path2/$path3/$path4") ?
-            @unlink("./upload/$path/$path2/$path3/$path4") :
-            array_map(__FUNCTION__, glob("./upload/$path/$path2/$path3/$path4".'/*')) == @rmdir("./upload/$path/$path2/$path3/$path4");
+    return is_file("../upload/$path/$path2/$path3/$path4") ?
+            @unlink("../upload/$path/$path2/$path3/$path4") :
+            array_map(__FUNCTION__, glob("../upload/$path/$path2/$path3/$path4".'/*')) == @rmdir("../upload/$path/$path2/$path3/$path4");
 }
 function insertFolderRegion()
 {
