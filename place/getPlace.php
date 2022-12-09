@@ -1,3 +1,4 @@
 <?php
 include '../connect.php';
-getAllData('place');
+$ID_Region = filterRequest('ID_Region');
+getAllData('place',"`ID_Region` =$ID_Region");

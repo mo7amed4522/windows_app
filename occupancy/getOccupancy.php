@@ -1,3 +1,4 @@
 <?php
 include '../connect.php';
-getAllData('occupancy');
+$ID_Place = filterRequest('ID_Place');
+getAllData('occupancy',"`ID_Place` =$ID_Place");
