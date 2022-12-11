@@ -1,4 +1,7 @@
 <?php
+
+use function PHPSTORM_META\type;
+
 define("MB", 1048576);
 
 function filterRequest($requestname)
@@ -150,7 +153,7 @@ function getOneData($type,$table,$where = null, $values = null)
     $data = $stmt->fetch(PDO::FETCH_ASSOC);
     $count  = $stmt->rowCount();
     if ($count > 0) {
-        return $data['name'];
+        return $data[$type];
     } else {
         echo json_encode(array("status" => "failure"));
     }
@@ -161,6 +164,7 @@ function createFolder($dir)
 {
     if (!file_exists($dir)) {
         mkdir("../upload/$dir",0777);
+        echo json_encode(array("status" => "success"));
         exit;
     } else {
         echo "The directory $dir exists.";
@@ -222,3 +226,4 @@ function sendEmail($to, $title, $body)
 $header = "From : support@mo7amed4522.com" ."\n" . "CC: ahmedmohamed4522@gmail.com"; 
 mail($to, $title, $body, $header);
 }
+

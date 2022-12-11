@@ -1,5 +1,6 @@
-
 <?php
 include "../connect.php";
- $ne = getOneData('name','place',"`ID_Region` = 1");
- echo $ne;
+$pla_id = filterRequest("pla_id");
+$place = getOneData("pla_nam","pathplace","`pla_id` = $pla_id");
+$region = getOneData("reg_nam","pathplace","`pla_id` =$pla_id");
+echo "$region/$place";
