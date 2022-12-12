@@ -138,7 +138,7 @@ function imageUpload($imageRequest,$path)
         $msgError = "size";
     }
     if (empty($msgError)) {
-        move_uploaded_file($imagetmp,  ".../upload/$path" . $imagename);
+        move_uploaded_file($imagetmp,  "../upload/$path" . $imagename);
         return $imagename;
     } else {
         return "fail";
