@@ -164,8 +164,6 @@ function createFolder($dir)
 {
     if (!file_exists($dir)) {
         mkdir("../upload/$dir",0777);
-        echo json_encode(array("status" => "success"));
-        exit;
     } else {
         echo "The directory $dir exists.";
     }
@@ -179,27 +177,6 @@ function deleteFolder($path) {
             @unlink("../upload/$path") :
             array_map(__FUNCTION__, glob("../upload/$path".'/*')) == @rmdir("../upload/$path");
 }
-
-function checkAuthenticate()
-{
-    if (isset($_SERVER['PHP_AUTH_USER'])  && isset($_SERVER['PHP_AUTH_PW'])) {
-        if ($_SERVER['PHP_AUTH_USER'] != "wael" ||  $_SERVER['PHP_AUTH_PW'] != "wael12345") {
-            header('WWW-Authenticate: Basic realm="My Realm"');
-            header('HTTP/1.0 401 Unauthorized');
-            echo 'Page Not Found';
-            exit;
-        }
-    } else {
-        exit;
-    }
-
-    // End 
-}
-
-
-
-
-
 
 function printFailer()
 {

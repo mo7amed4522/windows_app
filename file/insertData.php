@@ -15,7 +15,6 @@ $place = getOneData("nam_pl", "pathoccupancy", "`occ_id` = $ID_Occupancy");
 $occupancy = getOneData("name", "occupancy", "`ID`=$ID_Occupancy");
 $path = "$region/$place/$occupancy/$name/";
 mkdir("../upload/$path",0777);
-//createFolder($path);
 $word = imageUpload("word", "$path");
 $scan = imageUpload("scan", "$path");
 $photo = imageUpload("photo", "$path");
