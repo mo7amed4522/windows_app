@@ -3,12 +3,12 @@ include '../connect.php';
 $name = filterRequest("name");
 $address = filterRequest("address");
 $owner = filterRequest("owner");
+$number = filterRequest("number");
 $ID_Card = filterRequest("ID_Card");
 $phone = filterRequest("phone");
 $date1 = filterRequest("date1");
 $date2 = filterRequest("date2");
-$date3 = filterRequest("date3");
-$date4 = filterRequest("date4");
+$choice = filterRequest("choice");
 $ID_Occupancy = filterRequest("ID_Occupancy");
 $region = getOneData("nam_id", "pathoccupancy", "`occ_id`= $ID_Occupancy");
 $place = getOneData("nam_pl", "pathoccupancy", "`occ_id` = $ID_Occupancy");
@@ -18,8 +18,8 @@ mkdir("../upload/$path",0777);
 $word = imageUpload("word", "$path");
 $scan = imageUpload("scan", "$path");
 $photo = imageUpload("photo", "$path");
-$stmt = $con->prepare("SELECT * FROM `files_Data` WHERE `name` = ?");
-$stmt->execute(array($name));
+$stmt = $con->prepare("SELECT * FROM `files_Data` WHERE `name` = ? AND `ID_Occupancy` =?");
+$stmt->execute(array($name,$ID_Occupancy));
 $count = $stmt->rowCount();
 if ($count > 0) {
     printFailer();
@@ -28,15 +28,12 @@ if ($count > 0) {
         "name" => $name,
         "address" => $address,
         "owner" => $owner,
+        "number" =>$number,
         "ID_Card" => $ID_Card,
         "phone" => $phone,
-        "word" => $word,
-        "scan" => $scan,
-        "photo" => $photo,
         "date1" => $date1,
         "date2" => $date2,
-        "date3" => $date3,
-        "date4" => $date4,
+        "choice"=>$choice,
         "ID_Occupancy" => $ID_Occupancy,
     );
     insertdata("files_Data", $data);

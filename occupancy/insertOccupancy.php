@@ -2,8 +2,8 @@
 include  '../connect.php';
 $name = filterRequest("name");
 $ID_Place = filterRequest("ID_Place");
-$stmt = $con->prepare("SELECT * FROM `occupancy` WHERE `name` = ? ");
-$stmt->execute(array($name));
+$stmt = $con->prepare("SELECT * FROM `occupancy` WHERE `name` = ? AND `ID_Place`=?");
+$stmt->execute(array($name,$ID_Place));
 $count = $stmt->rowCount();
 if($count > 0){
     printFailer();

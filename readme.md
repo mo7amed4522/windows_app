@@ -29,14 +29,6 @@ POST: "localhost/windows_app/region/insertRegion.php";
 GET: "localhost/windows_app/unfinshed/unfullfilled.php";
 
 
-
-
-
-
-
-
-
-
 ================== path ==================
 CREATE VIEW path
 AS
@@ -46,9 +38,6 @@ WHERE
 files_data.ID_Occupancy =occupancy.ID &&
 occupancy.ID_Place = place.ID &&
 place.ID_Region = region.ID
-
-
-
 =================== pathoccupancy==============================
 CREATE VIEW pathoccupancy 
 AS
@@ -57,9 +46,6 @@ FROM region,place,occupancy
 WHERE 
 occupancy.ID_Place=place.ID&&
 place.ID_Region = region.ID
-
-
-
 ============= pathPlace===========================
 CREATE view pathPlace
 AS
