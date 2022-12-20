@@ -41,9 +41,9 @@ function getOneOfAllData($type,$type2,$table, $where = null, $values = null,$jso
     global $con;
     $data = array();
     if($where == null){
-    $stmt = $con->prepare("SELECT  $type.*,$type2.* FROM $table ");
+    $stmt = $con->prepare("SELECT  $type,$type2 FROM $table ");
     }else{
-    $stmt = $con->prepare("SELECT  $type.*,$type2.* FROM $table WHERE   $where ");
+    $stmt = $con->prepare("SELECT  $type,$type2 FROM $table WHERE   $where ");
     }
     $stmt->execute($values);
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
