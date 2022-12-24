@@ -122,7 +122,7 @@ function updateData($table, $data, $where, $json = true)
     $stmt->execute($vals);
     $count = $stmt->rowCount();
     if ($json == true) {
-        if ($count > 0) {
+        if ($count > 0 || $count ==0) {
             echo json_encode(array("status" => "success"));
         } else {
             echo json_encode(array("status" => "failure"));
@@ -150,9 +150,33 @@ function deleteData($table, $where, $json = true)
 function imageUpload($imageRequest,$path)
 {
     global $msgError;
-    $imagename  = rand(1000, 10000) . $_FILES[$imageRequest]['name'];
+    $imagename  = $_FILES[$imageRequest]['name'];
     $imagetmp   = $_FILES[$imageRequest]['tmp_name'];
     $imagesize  = $_FILES[$imageRequest]['size'];
+    $allowExt   = array("jpg","JPG", "png","PNG", "gif", "mp3", "pdf","docx",".");
+    $strToArray = explode(".", $imagename);
+    $ext        = end($strToArray);
+    $ext        = strtolower($ext);
+
+    if (!empty($imagename) && !in_array($ext, $allowExt)) {
+        $msgError = "EXT";
+    }
+    if ($imagesize > 1000 * MB) {
+        $msgError = "size";
+    }
+    if (empty($msgError)) {
+        move_uploaded_file($imagetmp,  "../upload/$path" . $imagename);
+        return $imagename;
+    } else {
+        return "fail";
+    }
+}
+function updateimageUpload($imageRequest,$path)
+{
+    global $msgError;
+    $imagename  = $_FILES[$imageRequest]['name'];
+    $imagetmp   = null ?:$_FILES[$imageRequest]['tmp_name'];
+    $imagesize  = null ?:$_FILES[$imageRequest]['size'];
     $allowExt   = array("jpg","JPG", "png","PNG", "gif", "mp3", "pdf","docx",".");
     $strToArray = explode(".", $imagename);
     $ext        = end($strToArray);

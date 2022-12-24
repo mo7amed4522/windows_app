@@ -1,5 +1,6 @@
 <?php
 include "../connect.php";
+error_reporting(0);
 $ID = filterRequest("ID");
 $name = filterRequest("name");
 $address = filterRequest("address");
@@ -15,7 +16,7 @@ $place = getOneData("id_na","path","`id_fil` =$ID");
 $occupancy =getOneData("occ_na","path","`id_fil` = $ID");
 $oldName = getOneData("fil_na","path","`id_fil` = $ID");
 $oldName ="../upload/$region/$place/$occupancy/$oldName";
-$newName = "../upload/$region/$place/$occupancy/$name";
+$newName = "../upload/$region/$place/$occupancy/$name/";
 rename($oldName,$newName);
 $data =array(
     "ID" =>$ID,
@@ -30,6 +31,3 @@ $data =array(
     "choice"=>$choice,
 );
 updateData("files_Data",$data,"`ID` = $ID");
-imageUpload("word",$newName);
-imageUpload('scan',$newName);
-imageUpload("photo",$newName);

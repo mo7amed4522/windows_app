@@ -1,5 +1,6 @@
 <?php
 include '../connect.php';
+error_reporting(0);
 $name = filterRequest("name");
 $address = filterRequest("address");
 $owner = filterRequest("owner");
