@@ -37,19 +37,19 @@ FROM region,place,occupancy,files_data
 WHERE
 files_data.ID_Occupancy =occupancy.ID &&
 occupancy.ID_Place = place.ID &&
-place.ID_Region = region.ID
-=================== pathoccupancy==============================
+place.ID_Region = region.ID;
+
 CREATE VIEW pathoccupancy 
 AS
 SELECT region.ID as re_id,region.name nam_id,place.ID as pl_id,place.name as nam_pl, occupancy.ID as occ_id,occupancy.name as nam_occ
 FROM region,place,occupancy
 WHERE 
 occupancy.ID_Place=place.ID&&
-place.ID_Region = region.ID
-============= pathPlace===========================
+place.ID_Region = region.ID;
+
 CREATE view pathPlace
 AS
 SELECT region.ID as reg_id,region.name reg_nam,place.ID as pla_id,place.name pla_nam
 FROM region,place
 WHERE
-place.ID_Region = region.ID
+place.ID_Region = region.ID;
