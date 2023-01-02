@@ -1,14 +1,10 @@
 <?php
-
 use function PHPSTORM_META\type;
-
 define("MB", 1048576);
-
 function filterRequest($requestname)
 {
     return  htmlspecialchars(strip_tags($_POST[$requestname]));
 }
-
 function getAllData($table, $where = null, $values = null,$json = true)
 {
     global $con;
