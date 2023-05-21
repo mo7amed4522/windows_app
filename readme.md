@@ -53,3 +53,5 @@ SELECT region.ID as reg_id,region.name reg_nam,place.ID as pla_id,place.name pla
 FROM region,place
 WHERE
 place.ID_Region = region.ID;
+![Uploading Simulator Screenshot - iPhone 14 Pro Max - 2023-05-21 at 18.09.27.png…]()
+
